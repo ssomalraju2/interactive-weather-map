@@ -1,17 +1,21 @@
-import { MapContainer, TileLayer } from 'react-leaflet';
 import './App.css'
-import 'leaflet/dist/leaflet.css';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <div>
-        <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '500px', width: '800px' }}>
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        </MapContainer>
-      </div>
-    </>
-  )
+    <div id="map-container">
+      <APIProvider apiKey={'AIzaSyDoqNMjgkzobbVUB0FwxGtsTQ77UlnWmMo'} onLoad={() => console.log('Maps API has loaded.')}>
+        <Map
+            style={{ width: '80%', height: '80%' }}
+            defaultZoom={13}
+            defaultCenter={ { lat: -33.860664, lng: 151.208138 } }
+            mapId='da37f3254c6a6d1c'
+            onClick={ev => console.log('Lat lng: ', ev.detail.latLng)}
+        >
+        </Map>
+      </APIProvider>
+    </div>
+  );
 }
 
 export default App
